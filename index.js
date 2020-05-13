@@ -1,8 +1,4 @@
-var bmi = bmiCalculator(69, 100.8); 
-
-alert(bmi);
-
-function bmiCalculator(weight, height) {
-    return weight/(height*height);
-    
-}
+function weight(w,h){ return (w/h); }; 
+var w=prompt("Enter your weight"); 
+var h=prompt('enter your height'); 
+var s=weight(w,h); console.log(s);
