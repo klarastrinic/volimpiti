@@ -1,61 +1,28 @@
 <!DOCTYPE html>
-        <html>
-           <head>
-        <title>BMI Calculator</title>
-             
-        <script type="text/javascript">
-          
-            function izračunaj() {
-                // user inputs
-                var visina = Number(document.getElementById("visina").value);
-                var visinaunits = document.getElementById("visinaunits").value;
-                var debljina = Number(document.getElementById("debljina").value);
-                var debljinaunits = document.getElementById("debljinaunits").value;
-        
-        
-                //Convert all units to metric
-                if (visinaunits == "inches") visina /= 39.3700787;
-                if (debljinaunits == "lb") debljina /= 2.20462;
-        
-                //Perform calculation
-        
-                //        var BMI = debljina /Math.pow(visina, 2)*10000;
-                var BMI = Math.round(debljina / Math.pow(visina, 2) * 10000);
-        
-                //Display result of calculation
-                document.getElementById("output").innerText = Math.round(BMI * 100) / 100;
-        
-                var output = Math.round(BMI * 100) / 100
-                if (output < 18.5)
-                    document.getElementById("comment").innerText = "Underdebljina";
-                else if (output >= 18.5 && output <= 25)
-                    document.getElementById("comment").innerText = "Normal";
-                else if (output >= 25 && output <= 30)
-                    document.getElementById("comment").innerText = "Obese";
-                else if (output > 30)
-                    document.getElementById("comment").innerText = "Overdebljina";
-                // document.getElementById("answer").value = output; 
-            }
-        </script>
-         </head>
-         <body>
-        <h1>Računanje BMI-a</h1>
-        <p>unesi svoju visinu: <input type="text" id="visina"/>
-            <select type="multiple" id="visinaunits">
-                <option value="metres" selected="selected">metres</option>
-                <option value="inches">inches</option>
-            </select>
-             </p>
-        <p>unesi svoju debljinu: <input type="text" id="debljina"/>
-            <select type="multiple" id="debljinaunits">
-                <option value="kg" selected="selected">kilograms</option>
-                <option value="lb">pounds</option>
-            </select>
-        </p>
-        <input type="submit" value="izračunaj" onclick="izračunaj();">
-        <h1>TVOJ BMI JE: <span id="output">?</span></h1>
-        
-        <h2>To znači da si: <span id="comment"> ?</span> </h2> 
-         </body>
-        
-        </html>
+<html>
+<head>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+<h2>BMI Computer</h2>
+<span>Weight:</span>
+<input type="number" name="weight" id="weight" step="any" min="0" required>
+<select id="wUnit">
+        <option value="1">Kilograms</option>
+        <option value="2">Pounds</option>
+    </select>
+<br>
+<span class="span2">Height:</span>
+<input type="number" name="height" id="height" step="any" min="0" required>
+<select id="hUnit">
+        <option value="1">Meters</option>
+        <option value="2">Centimeters</option>
+        <option value="3">Inches</option>
+        <option value="4">Feet</option>
+    </select>
+<br>
+<button id="btn2">Compute BMI</button>
+<script src="index.js"></script>
+</body>
+</html>
