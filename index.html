@@ -1,61 +1,93 @@
 <!DOCTYPE html>
-        <html>
-           <head>
-        <title>BMI Calculator</title>
-             
-        <script type="text/javascript">
+<html ng-app="bmiApp">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BMI Kalkulator</title>
+  
+  <link data-require="bootstrap-css@3.1.1" data-semver="3.1.1" rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+
+<body data-ng-controller="bmiController">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h3 class="jumbotron text-center">BMI Kalkulator</h3> 
+         
+        <form role="form"> 
+          <div class="form-group">
+            <div class="radio">
+              <label>
+                <input type="radio" ng-model="units" value="imperial">
+                <span class="label label-danger">Imperial</span> 
+              </label>
+            </div> 
+            
+            <div class="radio">
+              <label>
+                <input type="radio" ng-model="units" value="metric">
+                <span class="label label-success">Metric</span>
+              </label>
+            </div>
+            
+          </div>
           
-            function izračunaj() {
-                // user inputs
-                var visina = Number(document.getElementById("visina").value);
-                var visinaunits = document.getElementById("visinaunits").value;
-                var debljina = Number(document.getElementById("debljina").value);
-                var debljinaunits = document.getElementById("debljinaunits").value;
+          <div id="metric" ng-show="units == 'imperial'">
+            <div class="form-group">
+              <label for="weight">Weight (lb):</label>
+              <input type="number" ng-model="weight_lb" 
+              id="weight"
+              placeholder="weight in lb" class="form-control">    
+            </div>
+            
+            <div class="form-group">
+              <label for="weight_foot">Height (foot):</label>
+              <input type="number" ng-model="height_foot" 
+              id="weight_foot"
+              placeholder="height in foot" class="form-control">    
+            </div>
+            
+            <div class="form-group">
+              <label for="height_inch">Height (inch):</label>
+              <input type="number" ng-model="height_inch" 
+              id="height_inch"
+              placeholder="height in inch" class="form-control">    
+            </div>
+          </div>
+          
+          <div id="metric" ng-show="units == 'metric'">
+            <div class="form-group">
+              <label for="weight_kg">Weight (kg):</label>
+              <input type="number" ng-model="weight_kg" 
+              id="weight_kg"
+              placeholder="weight in kg" class="form-control">    
+            </div>
+            
+            <div class="form-group">
+              <label for="height_cm">Height (cm):</label>
+              <input type="number" ng-model="height_cm" 
+              id="height_cm"
+              placeholder="height in cm" class="form-control">    
+            </div>
+            
+          </div>
+        </form>
+        
+        <div class="well text-center">
+          <h3 class="text-muted">Calculated BMI</h3>
+          <h2><span class="label label-{{catClass}}" title="{{catTitle}}">{{bmi | number:1}}</span></h2>
+          <h4 class="text-muted">{{catTitle}}</h4>
+        </div>
         
         
-                //Convert all units to metric
-                if (visinaunits == "inches") visina /= 39.3700787;
-                if (debljinaunits == "lb") debljina /= 2.20462;
-        
-                //Perform calculation
-        
-                //        var BMI = debljina /Math.pow(visina, 2)*10000;
-                var BMI = Math.round(debljina / Math.pow(visina, 2) * 10000);
-        
-                //Display result of calculation
-                document.getElementById("output").innerText = Math.round(BMI * 100) / 100;
-        
-                var output = Math.round(BMI * 100) / 100
-                if (output < 18.5)
-                    document.getElementById("comment").innerText = "Underdebljina";
-                else if (output >= 18.5 && output <= 25)
-                    document.getElementById("comment").innerText = "Normal";
-                else if (output >= 25 && output <= 30)
-                    document.getElementById("comment").innerText = "Obese";
-                else if (output > 30)
-                    document.getElementById("comment").innerText = "Overdebljina";
-                // document.getElementById("answer").value = output; 
-            }
-        </script>
-         </head>
-         <body>
-        <h1>Računanje BMI-a</h1>
-        <p>unesi svoju visinu: <input type="text" id="visina"/>
-            <select type="multiple" id="visinaunits">
-                <option value="metres" selected="selected">metres</option>
-                <option value="inches">inches</option>
-            </select>
-             </p>
-        <p>unesi svoju debljinu: <input type="text" id="debljina"/>
-            <select type="multiple" id="debljinaunits">
-                <option value="kg" selected="selected">kilograms</option>
-                <option value="lb">pounds</option>
-            </select>
-        </p>
-        <input type="submit" value="izračunaj" onclick="izračunaj();">
-        <h1>TVOJ BMI JE: <span id="output">?</span></h1>
-        
-        <h2>To znači da si: <span id="comment"> ?</span> </h2> 
-         </body>
-        
-        </html>
+
+  <script data-require="jquery@*" data-semver="2.0.3" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+  <script data-require="bootstrap@3.1.1" data-semver="3.1.1" src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  <script data-require="angular.js@1.2.13" data-semver="1.2.13" src="http://code.angularjs.org/1.2.13/angular.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
