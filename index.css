@@ -1,0 +1,19 @@
+body {
+  font-family: monospace;
+}
+
+#number {
+  width: 67px;
+}
+
+#btn2 {
+  margin-left: 57px;
+}
+
+input {
+  width: 93px;
+}
+
+#wUnit {
+  width: 96px;
+}
